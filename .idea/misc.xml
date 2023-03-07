@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/WebCommon/pom.xml" />
         <option value="$PROJECT_DIR$/WebParent/pom.xml" />
         <option value="$PROJECT_DIR$/WebParent/WebBE/pom.xml" />
+        <option value="$PROJECT_DIR$/WebParent/WebFE/pom.xml" />
       </list>
     </option>
   </component>

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WebCommon" />
+        <module name="WebFE" />
         <module name="WebBE" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="WebBE" options="-parameters" />
       <module name="WebCommon" options="-parameters" />
+      <module name="WebFE" options="-parameters" />
       <module name="WebParent" options="" />
     </option>
   </component>

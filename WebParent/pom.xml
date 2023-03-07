@@ -19,6 +19,7 @@
     </properties>
     <modules>
         <module>WebBE</module>
+        <module>WebFE</module>
     </modules>
     <dependencies>
         <dependency>
