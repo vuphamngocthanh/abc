@@ -22,12 +22,7 @@ public class ProductController {
     ProductService productService;
     @Autowired
     private ProductRepository productRepository;
-    @GetMapping
-    public ModelAndView viewIndex(){
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("products",productService.listProduct());
-        return modelAndView;
-    }
+
     @GetMapping("/product-detail-{id}")
     public ModelAndView viewProductDetail(@PathVariable(value = "id") Long id){
         ModelAndView modelAndView = new ModelAndView("product-left-thumbnail");
