@@ -2,18 +2,17 @@ package com.shop.webbe.service;
 
 
 
-
-
-import com.shop.webcommon.dto.RoleDto;
+import com.shop.webbe.dto.RoleRequestDTO;
+import com.shop.webbe.dto.RoleResponseDTO;
 
 import java.util.List;
 
-public interface IRoleService extends IGeneralService<RoleDto>{
-    List<RoleDto> findAll();
+public interface IRoleService {
+    List<RoleResponseDTO> findAll();
 
-    RoleDto findById(Long id);
+    RoleResponseDTO findById(Long id);
 
-    void save(RoleDto roleDto);
+    RoleResponseDTO save(RoleRequestDTO roleRequestDTO);
 
     void remove(Long id);
 }

@@ -1,8 +1,6 @@
 package com.shop.webbe.security;
 
-
-
-import com.shop.webcommon.dto.UserRequestDTO;
+import com.shop.webbe.dto.UserRequestDTO;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

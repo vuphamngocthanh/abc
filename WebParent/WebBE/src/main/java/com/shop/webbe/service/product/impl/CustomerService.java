@@ -2,10 +2,9 @@ package com.shop.webbe.service.product.impl;
 
 
 
+import com.shop.webbe.dto.CustomerDto;
 import com.shop.webbe.repository.ICustomerRepository;
 import com.shop.webbe.service.product.ICustomerService;
-import com.shop.webcommon.dto.CustomerDto;
-import com.shop.webcommon.entity.Customer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class CustomerService implements ICustomerService {
     private ModelMapper modelMapper;
     @Override
     public List<CustomerDto> findAll() {
-        Iterable<Customer> entities = customerRepository.findAll();
+        Iterable<Customer1> entities = customerRepository.findAll();
         return StreamSupport.stream(entities.spliterator(), true)
                 .map(entity -> modelMapper.map(entity, CustomerDto.class))
                 .collect(Collectors.toList());
@@ -32,13 +31,13 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public CustomerDto findById(Long id) {
-        Customer customer = customerRepository.findById(id).orElse(null);
+        Customer1 customer = customerRepository.findById(id).orElse(null);
         return modelMapper.map(customer, CustomerDto.class);
     }
 
     @Override
     public void save(CustomerDto customerDto) {
-        Customer customer = modelMapper.map(customerDto, Customer.class);
+        Customer1 customer = modelMapper.map(customerDto, Customer1.class);
         customerRepository.save(customer);
     }
 

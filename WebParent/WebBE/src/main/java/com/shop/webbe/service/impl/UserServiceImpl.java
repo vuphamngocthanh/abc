@@ -1,12 +1,12 @@
 package com.shop.webbe.service.impl;
 
 
-;
+import com.shop.webbe.dto.UserRequestDTO;
+import com.shop.webbe.dto.UserResponseDTO;
 import com.shop.webbe.payload.request.AuthRequest;
+import com.shop.webbe.repository.RoleRepository;
 import com.shop.webbe.repository.UserRepository;
 import com.shop.webbe.service.IUserService;
-import com.shop.webcommon.dto.UserRequestDTO;
-import com.shop.webcommon.dto.UserResponseDTO;
 import com.shop.webcommon.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,9 @@ public class UserServiceImpl implements IUserService {
     AuthenticationManager authManager;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -50,7 +54,28 @@ public class UserServiceImpl implements IUserService {
             String hashedPassword = BCrypt.hashpw(userCreateDTO.getPassword(), BCrypt.gensalt(10));
             user.setPassword(hashedPassword);
         }
-        return modelMapper.map(userRepository.save(user), UserResponseDTO.class);
+        if (userCreateDTO.getId()!=null) {
+            userRepository.save(user);
+        } else {
+            for (User u: userRepository.findAll()) {
+                if(u.getUsername().equals(userCreateDTO.getUsername())){
+                    return null;
+                }
+            }
+        }
+        userRepository.save(user);
+        return modelMapper.map(user,UserResponseDTO.class);
+    }
+
+    @Override
+    public List<UserResponseDTO> findAllByNameContaining(String search) {
+        List<User> entities = userRepository.findAllByNameContaining(search);
+        List<UserResponseDTO> users = new ArrayList<>(
+                entities.stream()
+                        .parallel()
+                        .map(entity -> modelMapper.map(entity, UserResponseDTO.class))
+                        .collect(Collectors.toList()));
+        return users;
     }
 
     @Override

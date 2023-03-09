@@ -1,6 +1,5 @@
 package com.shop.webfe.controller;
 
-
 import com.shop.webcommon.entity.Cart;
 import com.shop.webcommon.entity.Order;
 import com.shop.webfe.config.Environment;
@@ -8,8 +7,9 @@ import com.shop.webfe.enums.RequestType;
 import com.shop.webfe.momo.HttpResponse;
 import com.shop.webfe.momo.PaymentResponse;
 import com.shop.webfe.process.CreateOrderMoMo;
+import com.shop.webfe.product.ProductService;
 import com.shop.webfe.repository.ProductRepository;
-import com.shop.webfe.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,25 +24,26 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping("/product-detail-{id}")
-    public ModelAndView viewProductDetail(@PathVariable(value = "id") Long id){
+    public ModelAndView viewProductDetail(@PathVariable(value = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView("product-left-thumbnail");
-        modelAndView.addObject("productDetailDto",productService.getDetailProduct(id));
+        modelAndView.addObject("productDetailDto", productService.getDetailProduct(id));
         return modelAndView;
     }
+
     @PostMapping("/add/{id}")
     public ModelAndView viewCart(@RequestParam String color,
-                           @RequestParam String size,
-                           @RequestParam Integer quantity,
-                           @PathVariable Long id,
-                           @ModelAttribute Cart cart,
-                           @RequestParam("action") String action){
-        ModelAndView modelAndView = new ModelAndView("car1t");
+                                 @RequestParam String size,
+                                 @RequestParam Integer quantity,
+                                 @PathVariable Long id,
+                                 @ModelAttribute Cart cart,
+                                 @RequestParam("action") String action) {
+        ModelAndView modelAndView = new ModelAndView("cart");
         Order order = new Order();
         order.setId(id);
         order.setColor(color);
         order.setSize(size);
         order.setQuantity(quantity);
-        order.setTotal((float) (quantity*(productService.findById(id).getPrice())));
+        order.setTotal((float) (quantity * (productService.findById(id).getPrice())));
         order.setProductDetailDto(productService.findById(id));
         cart.addProduct(order);
         System.out.println(cart);
@@ -75,9 +76,10 @@ public class ProductController {
         captureWalletMoMoResponse.getPayUrl();
         return "redirect:" + captureWalletMoMoResponse.getPayUrl();
     }
+
     @GetMapping("/success")
-    public String success(HttpResponse response){
-        if (response.getStatus() != 200){
+    public String success(HttpResponse response) {
+        if (response.getStatus() != 200) {
             return "co cl";
         }
         return "order-success";

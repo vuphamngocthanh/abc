@@ -1,20 +1,23 @@
 package com.shop.webbe.controller;
 
 
+import com.shop.webbe.dto.UserRequestDTO;
 import com.shop.webbe.payload.request.AuthRequest;
 import com.shop.webbe.payload.response.AuthResponse;
 import com.shop.webbe.security.JwtTokenUtil;
 import com.shop.webbe.service.impl.UserServiceImpl;
-import com.shop.webcommon.dto.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 
 @RestController
 public class AuthApi {

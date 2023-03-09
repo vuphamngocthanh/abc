@@ -1,13 +1,11 @@
 package com.shop.webcommon.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -33,7 +31,8 @@ public class Product {
 
     @Column(name = "photo")
     private String photo;
-
+    @Column(name = "created_at")
+    private Timestamp createdAt;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "products_sizes" ,
             joinColumns = @JoinColumn (name = "product_id"),

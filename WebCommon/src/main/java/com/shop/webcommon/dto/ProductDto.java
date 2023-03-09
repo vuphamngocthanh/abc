@@ -1,14 +1,15 @@
 package com.shop.webcommon.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.shop.webcommon.dto.ProductColorDto;
+import com.shop.webcommon.dto.ProductSizeDto;
+import lombok.*;
 
+import javax.persistence.Column;
+import java.sql.Timestamp;
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto {
@@ -19,8 +20,12 @@ public class ProductDto {
     private String detailedDescription;
     private Integer price;
     private String photo;
+    private Timestamp createdAt;
     private List<ProductSizeDto> productSizeDtos;
+
+
     private List<ProductColorDto> productColorDtos;
+
     private CategoryDto categoryDto;
 
 }

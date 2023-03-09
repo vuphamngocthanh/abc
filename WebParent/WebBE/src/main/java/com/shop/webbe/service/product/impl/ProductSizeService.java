@@ -1,9 +1,9 @@
 package com.shop.webbe.service.product.impl;
 
 
+import com.shop.webcommon.dto.ProductSizeDto;
 import com.shop.webbe.repository.ProductSizeRepository;
 import com.shop.webbe.service.product.IProductSizeService;
-import com.shop.webcommon.dto.ProductSizeDto;
 import com.shop.webcommon.entity.ProductSize;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

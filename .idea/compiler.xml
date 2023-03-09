@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WebCommon" />
-        <module name="WebFE" />
         <module name="WebBE" />
+        <module name="WebFE" />
       </profile>
     </annotationProcessing>
   </component>

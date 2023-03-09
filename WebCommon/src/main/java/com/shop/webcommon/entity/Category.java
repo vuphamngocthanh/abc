@@ -1,18 +1,15 @@
 package com.shop.webcommon.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "categories")
 @Getter
 @Setter
-@Table(name = "categories")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {

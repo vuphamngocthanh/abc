@@ -1,7 +1,6 @@
 package com.shop.webcommon.entity;
 
 
-
 import com.shop.webcommon.dto.ProductDetailDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

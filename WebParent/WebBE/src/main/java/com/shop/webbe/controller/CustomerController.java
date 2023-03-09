@@ -2,8 +2,8 @@ package com.shop.webbe.controller;
 
 
 
+import com.shop.webbe.dto.CustomerDto;
 import com.shop.webbe.service.product.impl.CustomerService;
-import com.shop.webcommon.dto.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
